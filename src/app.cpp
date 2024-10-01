@@ -196,6 +196,8 @@ int main() {
                 std::cout << "Opcao invalida! Tente novamente...\n";
                 break;
         }
+
+        std::cout << "\n";
     }
 
     return 0;
