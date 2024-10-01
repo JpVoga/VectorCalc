@@ -11,7 +11,6 @@ using VectorCalc = Math::Vector<float64_t, VECTOR_MAX_LENGTH>;
 using VectorData = std::vector<float64_t>;
 
 constexpr VectorData vectorCalcToData(const VectorCalc &v) {
-    std::cout << v << "\n";
     VectorData result;
     for (size_t i = 0; i < v.getCount(); ++i) {
         result.push_back(v[i]);
@@ -79,11 +78,125 @@ constexpr std::optional<VectorData> parseData(std::string_view vStr) {
         }
     }
 
+    if (result.size() > VECTOR_MAX_LENGTH) return std::nullopt;
+
     return result;
 }
 
+constexpr VectorData readData(std::string_view prompt) {
+    std::optional<VectorData> container = std::nullopt;
+    while (true) {
+        std::cout << prompt;
+
+        constexpr size_t inputBufferLength = 1024;
+        char input[inputBufferLength] = "";
+        std::cin.getline(input, sizeof(char) * inputBufferLength);
+
+        container = parseData(input);
+
+        if (container.has_value()) return container.value();
+        else {
+            std::cout << "ERRO! Certifique-se de que o vetor esta no formato certo e tem no maximo " << VECTOR_MAX_LENGTH << " componentes.\n\n";
+        }
+    }
+}
+
 int main() {
-    std::cout << parseData(" \t\t (1; 0.6; 1.9; 1.5;            -8.5;  5,3)    ").value();
+    VectorData dataA, dataB;
+    VectorCalc calcA, calcB;
+
+    dataA = readData("Digite o valor de A no formato (x; y; z; ...): ");
+    calcA = vectorDataToCalc(dataA);
+    dataB = readData("Digite o valor de B no formato (x; y; z; ...): ");
+    calcB = vectorDataToCalc(dataB);
+
+    std::cout << "\n";
+
+    while (true) {
+        std::cout << "Selecione uma opcao:\n" <<
+            "\ta) Redefinir A\n" <<
+            "\tb) Redefinir B\n" <<
+            "\tc) Modulo de A\n" <<
+            "\td) Modulo de B\n" <<
+            "\te) A + B\n" <<
+            "\tf) A - B\n" <<
+            "\tg) A . B\n" <<
+            "\th) A X B\n" <<
+            "\ti) Distancia entre A e B\n" <<
+            "\tj) Angulo entre A e B\n" <<
+            "\tk) Sair\n"
+        ;
+
+        constexpr size_t inputBufferLength = 64;
+        char input[inputBufferLength] = "";
+        char option;
+        std::cin.getline(input, sizeof(char) * inputBufferLength);
+        for (size_t i = 0; i < inputBufferLength; ++i) {
+            if ((input[i] != '\t') && (input[i] != ' ') && (input[i] != '\n')) {
+                option = input[i];
+                break;
+            }
+        }
+
+        VectorData result; // Result of vector operations
+
+        // Process selected option
+        switch (option) {
+            case 'a':
+                dataA = readData("Digite o novo valor de A no formato (x; y; z; ...): ");
+                calcA = vectorDataToCalc(dataA);
+                break;
+            
+            case 'b':
+                dataB = readData("Digite o novo valor de B no formato (x; y; z; ...): ");
+                calcB = vectorDataToCalc(dataB);
+                break;
+
+            case 'c':
+                std::cout << '|' << dataA << "| = " << calcA.magnitude() << '\n';
+                break;
+
+            case 'd':
+                std::cout << '|' << dataB << "| = " << calcB.magnitude() << '\n';
+                break;
+            
+            case 'e':
+                result = vectorCalcToData(calcA + calcB);
+                while (result.size() < std::max(dataA.size(), dataB.size())) result.push_back(0);
+                std::cout << dataA << " + " << dataB << " = " << result << '\n';
+                break;
+
+            case 'f':
+                result = vectorCalcToData(calcA - calcB);
+                while (result.size() < std::max(dataA.size(), dataB.size())) result.push_back(0);
+                std::cout << dataA << " - " << dataB << " = " << result << '\n';
+                break;
+
+            case 'g':
+                std::cout << dataA << " . " << dataB << " = " << Math::vectorDot(calcA, calcB) << '\n';
+                break;
+
+            case 'h':
+                if (dataA.size() != 3 || dataB.size() != 3) std::cout << "Apenas disponivel para vetores 3D!\n";
+                else std::cout << dataA << " X " << dataB << " = " << Math::vectorCross(calcA.cast<float64_t, 3>(), calcB.cast<float64_t, 3>()) << '\n';
+                break;
+
+            case 'i':
+                std::cout << "Distancia entre " << dataA << " e " << dataB << " = " << Math::vectorDist(calcA, calcB) << '\n';
+                break;
+
+            case 'j':
+                std::cout << "Angulo entre " << dataA << " e " << dataB << " = " << Math::vectorAngleDeg(calcA, calcB) << " graus ou " <<
+                Math::vectorAngle(calcA, calcB) << " radianos" << '\n';
+                break;
+
+            case 'k': return 0;
+            
+            default:
+                std::cout << "Opcao invalida! Tente novamente...\n";
+                break;
+        }
+    }
 
     return 0;
 }
