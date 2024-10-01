@@ -76,6 +76,7 @@
         "typeindex": "cpp",
         "valarray": "cpp",
         "stdlib.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "text_encoding": "cpp"
     }
 }
