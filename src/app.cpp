@@ -129,7 +129,7 @@ int main() {
 
         constexpr size_t inputBufferLength = 64;
         char input[inputBufferLength] = "";
-        char option;
+        char option = '0';
         std::cin.getline(input, sizeof(char) * inputBufferLength);
         for (size_t i = 0; i < inputBufferLength; ++i) {
             if ((input[i] != '\t') && (input[i] != ' ') && (input[i] != '\n')) {
