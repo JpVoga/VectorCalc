@@ -1,6 +1,6 @@
 COMPILER = g++
 BASE_FLAGS = -std=c++2b -Wall -Wextra
-DEBUG = 1
+DEBUG = 0
 
 ifneq ($(DEBUG), 0) # If debug is not false (it's true)
 FLAGS = $(BASE_FLAGS) -O0 -D_DEBUG=1 -UNDEBUG -g
