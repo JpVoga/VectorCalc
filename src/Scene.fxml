@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+   <children>
+      <Text layoutX="385.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Calculadora de vetores" textAlignment="CENTER" wrappingWidth="254.638671875" AnchorPane.leftAnchor="385.0" AnchorPane.rightAnchor="384.361328125" AnchorPane.topAnchor="14.0224609375">
+         <font>
+            <Font size="25.0" />
+         </font></Text>
+      <Text layoutX="14.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A:" wrappingWidth="21.13671875" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="47.41796875">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="14.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="B:" wrappingWidth="21.13671875" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="73.41796875">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <TextField fx:id="aTextField" layoutX="35.0" layoutY="48.0" prefHeight="25.0" prefWidth="241.0" text="(0; 0; 0)" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="48.0" />
+      <TextField fx:id="bTextField" layoutX="35.0" layoutY="74.0" prefHeight="25.0" prefWidth="241.0" text="(0; 0; 0)" />
+      <Button fx:id="aLengthButton" layoutX="14.0" layoutY="109.0" mnemonicParsing="false" onAction="#onALengthButtonClicked" prefHeight="25.0" prefWidth="255.0" text="Módulo de A" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="109.0" />
+      <Button fx:id="bLengthButton" layoutX="14.0" layoutY="134.0" mnemonicParsing="false" onAction="#onBLengthButtonClicked" prefHeight="25.0" prefWidth="255.0" text="Módulo de B" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="134.0" />
+      <Button fx:id="sumButton" layoutX="14.0" layoutY="159.0" mnemonicParsing="false" onAction="#onSumButtonClicked" prefHeight="25.0" prefWidth="255.0" text="A+B" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="159.0" />
+      <Button fx:id="subButton" layoutX="14.0" layoutY="184.0" mnemonicParsing="false" onAction="#onSubButtonClicked" prefHeight="25.0" prefWidth="255.0" text="A-B" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="184.0" />
+      <Button fx:id="dotProductButton" layoutX="14.0" layoutY="209.0" mnemonicParsing="false" onAction="#onDotProductButtonClicked" prefHeight="25.0" prefWidth="255.0" text="A.B" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="209.0" />
+      <Button fx:id="crossProductButton" layoutX="14.0" layoutY="234.0" mnemonicParsing="false" onAction="#onCrossProductButtonClicked" prefHeight="25.0" prefWidth="255.0" text="AXB" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="234.0" />
+      <Button fx:id="distanceButton" layoutX="14.0" layoutY="256.0" mnemonicParsing="false" onAction="#onDistanceProductButtonClicked" prefHeight="25.0" prefWidth="255.0" text="Distância entre A e B" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="256.0" />
+      <Button fx:id="angleButton" layoutX="14.0" layoutY="281.0" mnemonicParsing="false" onAction="#onAngleProductButtonClicked" prefHeight="25.0" prefWidth="255.0" text="Ângulo entre A e B" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="281.0" />
+      <Text fx:id="resultText" layoutX="367.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Resultado..." wrappingWidth="579.13671875">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
