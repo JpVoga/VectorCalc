@@ -1,0 +1,1 @@
+Calculadora de vetores. Executar arquivo "VectorCalc.exe" em ambiente windows com java 21 instalado.
